@@ -4,10 +4,6 @@
 
 ---
 
-[Project Flowchart](figures/initial_flowchart.png)
-
----
-
 ## Overview
 
 [INCOMPLETE]
