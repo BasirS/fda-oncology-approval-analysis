@@ -2,8 +2,6 @@
 
 > Honors project for STA 4157 (Experimental Design) examining FDA drug approval times using factorial ANOVA and permutation-based inference, with focus on oncology therapeutics.
 
-![Project Flowchart](figures/initial_flowchart.png)
-
 ---
 
 ## Overview
