@@ -4,6 +4,10 @@
 
 ---
 
+![Project Flowchart](figs/initial_flowchart.png)
+
+---
+
 ## Overview
 
 [INCOMPLETE]
