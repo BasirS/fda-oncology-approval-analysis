@@ -4,7 +4,7 @@
 
 ---
 
-![Project Flowchart](figures/initial_flowchart.png)
+[Project Flowchart](figures/initial_flowchart.png)
 
 ---
 
