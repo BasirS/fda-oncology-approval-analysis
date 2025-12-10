@@ -1,11 +1,13 @@
 # FDA Oncology Drug Approval Analysis
 
-Statistical Analysis of Priority Review Effects on FDA Drug Approval Timelines (Experimental Design for Machine Learning Project)
+Statistical Analysis of Priority Review Effects on FDA Drug Approval Timelines 
 
 ## Author
-- Basir Abdul Samad
-- Statistics Honors Research Project
-- Fall 2025
+Basir Abdul Samad
+
+Experimental Design for Machine Learning Statistics Project
+
+Fall 2025
 
 ## Overview
 
