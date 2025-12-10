@@ -1,0 +1,32 @@
+# LaTeX auxiliary files
+*.aux
+*.log
+*.out
+*.toc
+*.bbl
+*.blg
+*.synctex.gz
+*.fls
+*.fdb_latexmk
+
+# R files
+.Rhistory
+.RData
+.Rproj.user
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+
+# System files
+.DS_Store
+Thumbs.db
+
+# Archive directory (not for commit)
+_archive/
+
+# Temporary files
+*.tmp
+*.temp
+*~
