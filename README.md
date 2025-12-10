@@ -155,7 +155,7 @@ https://www.fda.gov/drugs/drug-approvals-and-databases/compilation-cder-new-mole
 ## Citation
 
 ```bibtex
-@unpublished{samad2025fda,
+@unpublished{abdulsamad2025fda,
   author = {Abdul Samad, Basir},
   title = {Statistical Analysis of Priority Review Effects on FDA Drug Approval Timelines: Evidence of Simpson's Paradox in Oncology Drug Regulation},
   year = {2025},
