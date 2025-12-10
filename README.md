@@ -3,7 +3,7 @@
 Statistical Analysis of Priority Review Effects on FDA Drug Approval Timelines 
 
 ## Honors Project
-~ *Experimental Design for Machine Learning Statistics Project*
+~ *Experimental Design for Machine Learning Statistics (STA 4157) Project*
 
 By: Basir Abdul Samad
 
