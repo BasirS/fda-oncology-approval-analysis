@@ -1,0 +1,13 @@
+metric,value
+total_drugs,1335
+missing_count,676
+missing_rate_pct,50.63670411985019
+pre2000_missing_rate,0
+post2000_missing_rate,77.43413516609394
+chi2_era,1076.3931796352758
+p_era,4.814146524130092e-233
+chi2_review,33.001956187450816
+p_review,1.1933795435935589e-6
+correlation,0.8892303291032784
+p_correlation,0
+is_mcar,0

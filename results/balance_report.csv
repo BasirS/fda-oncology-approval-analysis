@@ -1,0 +1,9 @@
+metric,value
+onc_priority,224
+onc_standard,75
+other_priority,367
+other_standard,372
+ratio_onc_other_priority,1.6383928571428572
+ratio_onc_other_standard,4.96
+ratio_priority_standard_onc,2.986666666666667
+ratio_priority_standard_other,0.9865591397849462

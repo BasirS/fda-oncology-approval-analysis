@@ -1,0 +1,5 @@
+therapeutic_area,review_type_simplified,mean_review_time,median_review_time,sd_review_time,n
+Oncology,Priority,300.2410714285716,232,282.4468598152131,224
+Oncology,Standard,596.1466666666668,365,467.210546129274,75
+Other,Priority,476.50408719345984,275,445.01909378779266,367
+Other,Standard,791.9408602150543,638.5,529.9574734983722,372

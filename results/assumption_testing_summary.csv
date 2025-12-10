@@ -1,0 +1,3 @@
+Scale,Variance_Ratio,Interpretation,Levene_Statistic,Levene_P_Value,Levene_Result
+Raw (review_time_days),3.5205339808231644,borderline (3.0-4.0),19.567888280022537,2.4164552453126115e-12,reject homogeneity
+Log (log_review_time_days),1.7153303780063724,acceptable (< 3.0),8.667457786788543,1.1057425158749658e-5,reject homogeneity
