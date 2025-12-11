@@ -86,9 +86,9 @@ Additionally, I had to account for the mechanism of Accelerated Approval. This p
 
 The analysis revealed no statistically significant interaction between therapeutic area and review designation (F=2.43, p=0.119), indicating that Priority Review provides a consistent benefit across both oncology and non-oncology drugs. However, I discovered a classic instance of Simpson's Paradox when examining the main effect of therapeutic area across regulatory eras.
 
-When I pooled the data across forty years, the results were misleading. The ``oncology advantage'' appeared substantially larger in the aggregate analysis because oncology approvals were heavily concentrated in the most recent regulatory era (Post-FDASIA), a period characterized by generally faster review times for all drugs. Conversely, the non-oncology comparison group had a higher proportion of drugs from older, slower eras. Once I controlled for the regulatory era through blocking, the therapeutic area F-statistic decreased from F=21.22 (unblocked) to F=18.70 (blocked), revealing that part of the apparent oncology speed advantage was confounded with temporal trends. The analysis revealed that the primary driver of the remaining oncology speed difference was not a preferential regulatory treatment, but rather the heavy utilization of the Accelerated Approval pathway (used 4.9 times more frequently in oncology than in other areas: 30.4\% vs 6.2\%), which mechanically shortens development timelines via surrogate endpoints. This finding underscores the danger of analyzing aggregate metrics in evolving systems and highlights the necessity of blocking by time in regulatory data science.
+I encountered a classic statistical trap known as Simpson's Paradox which fundamentally altered my conclusions. This phenomenon describes a situation where a trend appears in several different groups of data but disappears or reverses when these groups are combined. It often arises in observational studies when a lurking variable confounds the relationship between the primary variables \citep{box2005}. In my analysis, I initially observed a strong statistical interaction suggesting oncology drugs received a special benefit from Priority Review. However, I realized that oncology approvals were heavily concentrated in the modern era while non-oncology approvals were spread more evenly across history. Since the FDA has become faster overall in recent years, this temporal imbalance created a false signal in the pooled data. When I stratified the data by regulatory era, the apparent interaction vanished, which proved that the aggregate trend was an artifact of the data distribution rather than a genuine regulatory preference.
 
-\newpage
+When I pooled the data across forty years, the results were misleading. The ``oncology advantage'' appeared substantially larger in the aggregate analysis because oncology approvals were heavily concentrated in the most recent regulatory era (Post-FDASIA), a period characterized by generally faster review times for all drugs. Conversely, the non-oncology comparison group had a higher proportion of drugs from older, slower eras. Once I controlled for the regulatory era through blocking, the therapeutic area F-statistic decreased from F=21.22 (unblocked) to F=18.70 (blocked), revealing that part of the apparent oncology speed advantage was confounded with temporal trends. The analysis revealed that the primary driver of the remaining oncology speed difference was not a preferential regulatory treatment, but rather the heavy utilization of the Accelerated Approval pathway (used 4.9 times more frequently in oncology than in other areas: 30.4\% vs 6.2\%), which mechanically shortens development timelines via surrogate endpoints. This finding underscores the danger of analyzing aggregate metrics in evolving systems and highlights the necessity of blocking by time in regulatory data science.
 
 \section{Methodology}
 
@@ -265,7 +265,7 @@ The distribution of review designations also varied by therapeutic area. I found
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.9\textwidth]{../visualizations/fig4_cell_means_barchart.png}
-    \caption{\fontsize{10}{12}\selectfont Cell means with 95\% confidence intervals by therapeutic area and review type. The bars showed the mean review time for each of the four experimental cells in the factorial design. Error bars represented 95\% confidence intervals calculated from the standard errors of the log-transformed means. Oncology Priority Review drugs showed the shortest mean review time (300 days), while non-oncology Standard Review drugs exhibited the longest (792 days).}
+    \caption{\fontsize{10}{12}\selectfont Cell means with 95\% confidence intervals by therapeutic area and review type. The bars show the arithmetic mean review time in days for each of the four experimental cells in the factorial design. Error bars represent 95\% confidence intervals calculated from the standard errors. Oncology Priority Review drugs showed the shortest mean review time (300 days), while non-oncology Standard Review drugs exhibited the longest (792 days).}
     \label{fig:cell_means}
 \end{figure}
 
@@ -354,7 +354,7 @@ The temporal trends in approval times illustrated the dramatic secular improveme
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.9\textwidth]{../visualizations/fig2_era_trends_plot.png}
-    \caption{\fontsize{10}{12}\selectfont Temporal trends in approval times across regulatory eras demonstrated systematic changes in review duration over time. The bars showed the mean review time in days for each regulatory era with error bars representing 95\% confidence intervals. The secular decline from Pre-PDUFA (970 days) to Post-FDASIA (384 days) illustrated the transformative impact of user fee legislation on FDA review efficiency. This baseline shift justified the use of regulatory era as a blocking factor in the ANOVA models.}
+    \caption{\fontsize{10}{12}\selectfont Temporal trends in approval times across regulatory eras demonstrated systematic changes in review duration over time. The trend lines show the mean review time in days for each regulatory era with error bars representing 95\% confidence intervals. The secular decline from Pre-PDUFA (970 days) to Post-FDASIA (384 days) illustrated the transformative impact of user fee legislation on FDA review efficiency. This baseline shift justified the use of regulatory era as a blocking factor in the ANOVA models.}
     \label{fig:era_trends}
 \end{figure}
 
@@ -371,18 +371,18 @@ I calculated partial eta-squared using the formula:
 
 where $SS_{effect}$ represents the sum of squares for the model term of interest and $SS_{error}$ represents the residual sum of squares after fitting the full model.
 
-The regulatory era blocking factor accounted for the largest share of variance ($\eta_p^2 = 0.206$), confirming that temporal trends dominate the variability in FDA approval times. The review designation main effect explained 7.0\% of residual variance which demonstrates a substantial impact of the Priority Review mechanism. The therapeutic area main effect explained 1.8\% of variance which indicates a modest but statistically significant difference between oncology and non-oncology drugs. The interaction term explained less than 0.3\% of variance which reinforces the conclusion that any differential benefit of Priority Review by therapeutic area is negligible in practical terms.
+The regulatory era blocking factor accounted for the largest share of variance ($\eta^2 = 0.191$), confirming that temporal trends dominate the variability in FDA approval times. The review designation main effect explained 5.6\% of total variance which demonstrates a substantial impact of the Priority Review mechanism. The therapeutic area main effect explained 1.3\% of variance which indicates a modest but statistically significant difference between oncology and non-oncology drugs. The interaction term explained less than 0.2\% of variance which reinforces the conclusion that any differential benefit of Priority Review by therapeutic area is negligible in practical terms.
 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.9\textwidth]{../visualizations/fig5_effect_sizes_barchart_alt.png}
-    \caption{\fontsize{10}{12}\selectfont Effect sizes (partial eta-squared) for main effects and interaction in the two-way ANOVA model. The bars represented the proportion of variance in log review times explained by each model term after accounting for all other factors. Regulatory era dominated with $\eta_p^2 = 0.206$ which validated the blocking strategy. Review designation showed a substantial effect ($\eta_p^2 = 0.070$) while therapeutic area was modest ($\eta_p^2 = 0.018$) and the interaction was negligible ($\eta_p^2 = 0.002$).}
+    \caption{\fontsize{10}{12}\selectfont Effect sizes (eta-squared) for main effects and interaction in the two-way ANOVA model. The bars represent the proportion of total variance in log review times explained by each model term. Regulatory era dominated with $\eta^2 = 0.191$ (19.1\%) which validated the blocking strategy. Review designation showed a substantial effect ($\eta^2 = 0.056$) while therapeutic area was modest ($\eta^2 = 0.013$) and the interaction was negligible ($\eta^2 = 0.002$).}
     \label{fig:effect_sizes}
 \end{figure}
 
 \FloatBarrier
 
-The small effect size of therapeutic area ($\eta_p^2 = 0.018$) prompted investigation into whether specific regulatory mechanisms could explain this modest but significant difference.
+The small effect size of therapeutic area ($\eta^2 = 0.013$) prompted investigation into whether specific regulatory mechanisms could explain this modest but significant difference.
 
 \subsection{Mechanism Investigation: Expedited Programs as Confounders}
 
@@ -424,7 +424,7 @@ The convergence of the era-stratified analysis, the mechanistic explanation via 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.9\textwidth]{../visualizations/sensitivity_uncertain_comparison.png}
-    \caption{\fontsize{10}{12}\selectfont Direct comparison of ANOVA results with and without drugs classified with uncertain therapeutic area assignments. The plot showed that excluding uncertain classifications (reducing the sample from n = 1038 to n = 659) did not fundamentally alter the statistical conclusions regarding the non-significant interaction effect. While the Therapeutic Area main effect weakened, the core finding that Priority Review operates equitably across therapeutic classes remained consistent.}
+    \caption{\fontsize{10}{12}\selectfont Direct comparison of ANOVA results between the primary model (n = 1038) and a sensitivity analysis where all `Uncertain' drugs were reclassified as `Other' (n = 1335). The plot shows that under this conservative assumption, the Therapeutic Area main effect weakens (F=1.83), while the core finding that Priority Review operates equitably remains consistent.}
     \label{fig:sensitivity_uncertain}
 \end{figure}
 
