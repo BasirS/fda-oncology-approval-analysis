@@ -148,7 +148,7 @@ https://www.fda.gov/drugs/drug-approvals-and-databases/compilation-cder-new-mole
 - **Figure 2**: Temporal trends across regulatory eras
 - **Figure 3**: Permutation test distribution (10,000 iterations)
 - **Figure 4**: Cell means with 95% confidence intervals
-- **Figure 5**: Effect sizes comparison (η²ₚ)
+- **Figure 5**: Effect sizes comparison (η²)
 - **Figure 6**: Residual diagnostics for model validation
 - **Additional figures**: Era-stratified analyses, ANCOVA results, sensitivity analyses
 
