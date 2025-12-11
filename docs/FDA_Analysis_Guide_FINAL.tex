@@ -93,8 +93,6 @@ Additionally, I had to account for the mechanism of Accelerated Approval. This p
 
 The analysis revealed no statistically significant interaction between therapeutic area and review designation (F=2.43, p=0.119), indicating that Priority Review provides a consistent benefit across both oncology and non-oncology drugs. However, I discovered temporal confounding that manifested in a pattern similar to Simpson's Paradox when examining the main effect of therapeutic area across regulatory eras.
 
-I encountered a form of temporal confounding which fundamentally altered my conclusions. This pattern resembles Simpson's Paradox, where a lurking variable confounds the relationship between the primary variables, causing the apparent strength of an association to shift when the confounding variable is controlled \citep{box2005}. In my analysis, I initially observed a strong statistical interaction suggesting oncology drugs received a special benefit from Priority Review. However, I realized that oncology approvals were heavily concentrated in the modern era while non-oncology approvals were spread more evenly across history. Since the FDA has become faster overall in recent years, this temporal imbalance created a false signal in the pooled data. When I stratified the data by regulatory era, the apparent interaction vanished, which proved that the aggregate trend was an artifact of the data distribution rather than a genuine regulatory preference.
-
 When I pooled the data across forty years, the results were misleading. The ``oncology advantage'' appeared substantially larger in the aggregate analysis because oncology approvals were heavily concentrated in the most recent regulatory era (Post-FDASIA), a period characterized by generally faster review times for all drugs. Conversely, the non-oncology comparison group had a higher proportion of drugs from older, slower eras. Once I controlled for the regulatory era through blocking, the therapeutic area F-statistic decreased from F=21.22 (unblocked) to F=18.70 (blocked), revealing that part of the apparent oncology speed advantage was confounded with temporal trends. The analysis revealed that the primary driver of the remaining oncology speed difference was not a preferential regulatory treatment, but rather the heavy utilization of the Accelerated Approval pathway (used 4.9 times more frequently in oncology than in other areas: 30.4\% vs 6.2\%), which mechanically shortens development timelines via surrogate endpoints. This finding underscores the danger of analyzing aggregate metrics in evolving systems and highlights the necessity of blocking by time in regulatory data science.
 
 \section{Methodology}
@@ -174,7 +172,7 @@ In my analysis, $SS_T$ represents the total variation in review times across all
 
 The standard ANOVA calculations usually taught in introductory courses assume a balanced design, where every experimental group has the same sample size (e.g., n=10 for all groups). Montgomery notes that in balanced factorial designs, the main effects and interactions are orthogonal to one another \citep{montgomery2017}. Orthogonality is a mathematical property meaning the factors are independent; calculating the effect of Factor A does not depend on Factor B.
 
-However, my FDA dataset is severely unbalanced. As shown in my Phase 4 analysis, I have 739 ``Other'' drugs but only 299 ``Oncology'' drugs. Furthermore, the cell counts are lopsided: I have 224 Oncology-Priority drugs but only 75 Oncology-Standard drugs. Montgomery warns that ``the orthogonality property of main effects and interactions present in balanced data does not carry over to the unbalanced case'' \citep{montgomery2017}. Because the design is unbalanced, the factors are correlated. This creates a dilemma: variance that is shared between two factors (like Therapeutic Area and Regulatory Era) could mathematically be assigned to either one.
+However, my FDA dataset is severely unbalanced. As shown in the exploratory data analysis, I have 739 ``Other'' drugs but only 299 ``Oncology'' drugs. Furthermore, the cell counts are lopsided: I have 224 Oncology-Priority drugs but only 75 Oncology-Standard drugs. Montgomery warns that ``the orthogonality property of main effects and interactions present in balanced data does not carry over to the unbalanced case'' \citep{montgomery2017}. Because the design is unbalanced, the factors are correlated. This creates a dilemma: variance that is shared between two factors (like Therapeutic Area and Regulatory Era) could mathematically be assigned to either one.
 
 This lack of orthogonality forces a choice between different methods of calculating Sums of Squares (SS), specifically regarding how we handle the shared variance. Type I (Sequential) SS assigns variance to factors in the order they enter the model. If I entered Therapeutic Area first, it would claim all the variance it explains plus any variance it shares with Regulatory Era. Montgomery describes this sequential approach in the context of the ``extra sum of squares'' method, where we calculate the reduction in error sum of squares by adding a regressor to a model that already contains other variables \citep{montgomery2017}.
 
@@ -529,7 +527,7 @@ Interaction & 2.43 & 2.22 & Consistent \\
 Regulatory Era & 88.64 & 71.44 & Consistent \\
 \bottomrule
 \end{tabular}
-\caption{Comparison of F-statistics between primary analysis and high-confidence subset.}
+\caption{Table B.1: Comparison of F-statistics between primary analysis and high-confidence subset.}
 \end{table}
 
 I observed that the Therapeutic Area effect lost statistical significance in the high-confidence subset which suggests that the speed advantage for oncology is partly driven by drugs identified through the broader classification strategy. However, the Review Designation and Regulatory Era effects remained highly significant and the Interaction term remained non-significant which supports the robustness of the Simpson's Paradox finding.
@@ -548,7 +546,7 @@ I performed a permutation test with 10,000 iterations to validate the interactio
 Interaction F-Statistic & 0.32 & 1.00 & 0.5945 \\
 \bottomrule
 \end{tabular}
-\caption{Permutation test validation of interaction effect.}
+\caption{Table B.2: Permutation test validation of interaction effect.}
 \end{table}
 
 The permutation p-value of 0.5945 confirms that the interaction between therapeutic area and review designation is not statistically significant when controlling for era which aligns with the parametric p-value of 0.57 from the era-stratified model.
@@ -576,7 +574,7 @@ Interaction & 16,435 & 1 & 16,435 & 0.08 & 0.776 \\
 Residuals & 210,623,787 & 1034 & 203,698 & & \\
 \bottomrule
 \end{tabular}
-\caption{ANOVA table for pooled analysis on raw-scale without era blocking.}
+\caption{Table C.1: ANOVA table for pooled analysis on raw-scale without era blocking.}
 \end{table}
 
 \subsection*{Table C.2: Model 3 (Main Analysis - Log Scale, Era Stratified)}
@@ -598,7 +596,7 @@ Interaction & 0.8 & 1 & 0.8 & 2.43 & 0.119 \\
 Residuals & 343.7 & 1031 & 0.3 & & \\
 \bottomrule
 \end{tabular}
-\caption{ANOVA table for era-stratified model on log-scale (Type III SS).}
+\caption{Table C.2: ANOVA table for era-stratified model on log-scale (Type III SS).}
 \end{table}
 
 \subsection*{Table C.3: ANCOVA with Expedited Programs}
@@ -619,7 +617,7 @@ Orphan Drug & 0.2 & 1 & 0.2 & 0.52 & 0.4720 \\
 Residuals & 337.6 & 1028 & 0.3 & & \\
 \bottomrule
 \end{tabular}
-\caption{ANCOVA table with expedited program covariates. Note: Review Designation, Regulatory Era, and Interaction terms were included in the model but are not listed in this summary table. The full model included 10 degrees of freedom: Intercept (1) + Therapeutic Area (1) + Review Designation (1) + Regulatory Era (3) + Interaction (1) + Accelerated Approval (1) + Fast Track (1) + Orphan Drug (1).}
+\caption{Table C.3: ANCOVA table with expedited program covariates. Note: Review Designation, Regulatory Era, and Interaction terms were included in the model but are not listed in this summary table. The full model included 10 degrees of freedom: Intercept (1) + Therapeutic Area (1) + Review Designation (1) + Regulatory Era (3) + Interaction (1) + Accelerated Approval (1) + Fast Track (1) + Orphan Drug (1).}
 \end{table}
 
 
