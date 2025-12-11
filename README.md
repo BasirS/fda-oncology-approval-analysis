@@ -16,7 +16,7 @@ This repository contains a comprehensive statistical analysis investigating whet
 - **Simpson's Paradox Detected**: The therapeutic area main effect decreased from F=21.22 (unblocked model) to F=18.70 (era-blocked model), demonstrating that part of the apparent oncology speed advantage was confounded with temporal trends
 - **No Interaction Effect**: Analysis found no statistically significant interaction between therapeutic area and review designation across all models (Model 1: F=0.08, p=0.776; Model 2: F=0.32, p=0.572; Model 3: F=2.43, p=0.119), confirming Priority Review provides consistent temporal benefit across therapeutic areas
 - **Mechanism Identified**: The perceived speed advantage for oncology drugs reflects strategic utilization of the Accelerated Approval pathway (4.9× higher usage: 30.4% vs 6.2%) rather than systemic FDA bias
-- **Strong Main Effects**: Review designation (F=77.52, $p < 0.001$), Regulatory era (F=88.64, $p < 0.001$), Therapeutic area (F=18.70, $p < 0.001$)
+- **Strong Main Effects**: Review designation (F=77.52, ***p < 0.001***), Regulatory era (F=88.64, ***p < 0.001***), Therapeutic area (F=18.70, ***p < 0.001***)
 
 ## Repository Structure
 
