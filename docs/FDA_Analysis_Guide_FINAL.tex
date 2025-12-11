@@ -34,12 +34,11 @@ Baruch College, Zicklin School of Business}
 \maketitle
 
 \begin{abstract}
-Whether oncology drugs (n=299) receive a differential reduction in approval timelines from the Priority Review designation compared to non-oncology therapeutic areas (n=739) was evaluated using FDA approval data for 1038 new molecular entities from 1985 through 2024. Factorial analysis of variance with Type III sums of squares was applied to assess review times while blocking for regulatory era to account for legislative changes. Analysis of covariance was subsequently employed to isolate the mechanistic impact of expedited programs including Accelerated Approval and Fast Track designation. The analysis revealed strong main effects for both therapeutic area (F=18.70, $p < 0.001$) and review designation (F=77.52, $p < 0.001$), but no statistically significant interaction between these factors (F=2.43, p=0.119), indicating that Priority Review provides a consistent temporal benefit across therapeutic areas. However, stratifying the data by regulatory era revealed a manifestation of Simpson's Paradox regarding the therapeutic area main effect: the F-statistic decreased from F=21.22 in the unblocked model to F=18.70 in the blocked model, demonstrating that part of the apparent oncology speed advantage was confounded with temporal trends. Oncology approvals were heavily concentrated in the modern post-FDASIA era characterized by faster baseline review speeds for all drugs. Investigation of the regulatory mechanism determined that the Accelerated Approval pathway was the primary driver of the observed speed difference where oncology drugs were 4.9 times more likely to utilize this surrogate endpoint pathway than other drugs (30.4\% vs 6.2\%). The perceived speed advantage for cancer therapies reflects the strategic utilization of regulatory pathways allowing for surrogate endpoints rather than a systemic therapeutic area bias within the FDA review process.
+Whether oncology drugs (n=299) receive a differential reduction in approval timelines from the Priority Review designation compared to non-oncology therapeutic areas (n=739) was evaluated using FDA approval data for 1038 new molecular entities from 1985 through 2024. Factorial analysis of variance with Type III sums of squares was applied to assess review times while blocking for regulatory era to account for legislative changes. Analysis of covariance was subsequently employed to isolate the mechanistic impact of expedited programs including Accelerated Approval and Fast Track designation. The analysis revealed strong main effects for both therapeutic area (F=18.70, $p < 0.001$) and review designation (F=77.52, $p < 0.001$), but no statistically significant interaction between these factors (F=2.43, p=0.119), indicating that Priority Review provides a consistent temporal benefit across therapeutic areas. However, stratifying the data by regulatory era revealed temporal confounding in the therapeutic area main effect: the F-statistic decreased from F=21.22 in the unblocked model to F=18.70 in the blocked model, demonstrating that part of the apparent oncology speed advantage was confounded with temporal trends. Oncology approvals were heavily concentrated in the modern Post-FDASIA era characterized by faster baseline review speeds for all drugs. Investigation of the regulatory mechanism determined that the Accelerated Approval pathway was the primary driver of the observed speed difference where oncology drugs were 4.9 times more likely to utilize this surrogate endpoint pathway than other drugs (30.4\% vs 6.2\%). The perceived speed advantage for cancer therapies reflects the strategic utilization of regulatory pathways allowing for surrogate endpoints rather than a systemic therapeutic area bias within the FDA review process.
 \end{abstract}
 
 \onehalfspacing
 
-\newpage
 
 \section{Introduction}
 
@@ -66,9 +65,17 @@ My investigation was guided by one primary question regarding the relationship b
 
 \textbf{Statistical Hypotheses:}
 
-\textbf{$H_0$ (Null Hypothesis):} There is no interaction between therapeutic area and review designation on log-transformed review times, controlling for regulatory era. Formally: $(\tau\beta)_{ij} = 0$ for all $i,j$.
+\textbf{Primary Hypothesis (Main Effect):}
 
-\textbf{$H_a$ (Alternative Hypothesis):} The effect of Priority Review designation on review time differs between oncology and non-oncology drugs. Formally: $(\tau\beta)_{ij} \neq 0$ for at least one pair $i,j$.
+\textbf{$H_0$:} There is no difference in mean review times between oncology and non-oncology drugs, controlling for review designation and regulatory era. Formally: $\tau_{Oncology} = \tau_{Other}$.
+
+\textbf{$H_a$:} Oncology drugs have different mean review times compared to non-oncology drugs. Formally: $\tau_{Oncology} \neq \tau_{Other}$.
+
+\textbf{Secondary Hypothesis (Interaction Effect):}
+
+\textbf{$H_0$:} There is no interaction between therapeutic area and review designation on log-transformed review times, controlling for regulatory era. Formally: $(\tau\beta)_{ij} = 0$ for all $i,j$.
+
+\textbf{$H_a$:} The effect of Priority Review designation on review time differs between oncology and non-oncology drugs. Formally: $(\tau\beta)_{ij} \neq 0$ for at least one pair $i,j$.
 
 \textbf{Significance level:} $\alpha = 0.05$
 
@@ -84,9 +91,9 @@ Additionally, I had to account for the mechanism of Accelerated Approval. This p
 
 \subsection{Preview of Key Finding}
 
-The analysis revealed no statistically significant interaction between therapeutic area and review designation (F=2.43, p=0.119), indicating that Priority Review provides a consistent benefit across both oncology and non-oncology drugs. However, I discovered a classic instance of Simpson's Paradox when examining the main effect of therapeutic area across regulatory eras.
+The analysis revealed no statistically significant interaction between therapeutic area and review designation (F=2.43, p=0.119), indicating that Priority Review provides a consistent benefit across both oncology and non-oncology drugs. However, I discovered temporal confounding that manifested in a pattern similar to Simpson's Paradox when examining the main effect of therapeutic area across regulatory eras.
 
-I encountered a classic statistical trap known as Simpson's Paradox which fundamentally altered my conclusions. This phenomenon describes a situation where a trend appears in several different groups of data but disappears or reverses when these groups are combined. It often arises in observational studies when a lurking variable confounds the relationship between the primary variables \citep{box2005}. In my analysis, I initially observed a strong statistical interaction suggesting oncology drugs received a special benefit from Priority Review. However, I realized that oncology approvals were heavily concentrated in the modern era while non-oncology approvals were spread more evenly across history. Since the FDA has become faster overall in recent years, this temporal imbalance created a false signal in the pooled data. When I stratified the data by regulatory era, the apparent interaction vanished, which proved that the aggregate trend was an artifact of the data distribution rather than a genuine regulatory preference.
+I encountered a form of temporal confounding which fundamentally altered my conclusions. This pattern resembles Simpson's Paradox, where a lurking variable confounds the relationship between the primary variables, causing the apparent strength of an association to shift when the confounding variable is controlled \citep{box2005}. In my analysis, I initially observed a strong statistical interaction suggesting oncology drugs received a special benefit from Priority Review. However, I realized that oncology approvals were heavily concentrated in the modern era while non-oncology approvals were spread more evenly across history. Since the FDA has become faster overall in recent years, this temporal imbalance created a false signal in the pooled data. When I stratified the data by regulatory era, the apparent interaction vanished, which proved that the aggregate trend was an artifact of the data distribution rather than a genuine regulatory preference.
 
 When I pooled the data across forty years, the results were misleading. The ``oncology advantage'' appeared substantially larger in the aggregate analysis because oncology approvals were heavily concentrated in the most recent regulatory era (Post-FDASIA), a period characterized by generally faster review times for all drugs. Conversely, the non-oncology comparison group had a higher proportion of drugs from older, slower eras. Once I controlled for the regulatory era through blocking, the therapeutic area F-statistic decreased from F=21.22 (unblocked) to F=18.70 (blocked), revealing that part of the apparent oncology speed advantage was confounded with temporal trends. The analysis revealed that the primary driver of the remaining oncology speed difference was not a preferential regulatory treatment, but rather the heavy utilization of the Accelerated Approval pathway (used 4.9 times more frequently in oncology than in other areas: 30.4\% vs 6.2\%), which mechanically shortens development timelines via surrogate endpoints. This finding underscores the danger of analyzing aggregate metrics in evolving systems and highlights the necessity of blocking by time in regulatory data science.
 
@@ -94,15 +101,15 @@ When I pooled the data across forty years, the results were misleading. The ``on
 
 \subsection{Data Sources and Sample Construction}
 
-To rigorously investigate the interplay between therapeutic classification and regulatory review speed, I required a dataset that served as the definitive record of modern pharmaceutical history. I selected the Center for Drug Evaluation and Research (CDER) Compilation of New Molecular Entity (NME) and New Biologic Approvals because it provides the most authoritative account of every novel therapeutic agent approved for marketing in the United States. This compilation matters because it transcends mere lists of drugs; it captures the regulatory DNA of each approval, preserving the review designation, orphan status, and critical dates that define the administrative life of a pharmaceutical product (U.S. Food and Drug Administration, 2023).
+To rigorously investigate the interplay between therapeutic classification and regulatory review speed, I required a dataset that served as the definitive record of modern pharmaceutical history. I selected the Center for Drug Evaluation and Research (CDER) Compilation of New Molecular Entity (NME) and New Biologic Approvals because it provides the most authoritative account of every novel therapeutic agent approved for marketing in the United States. This compilation matters because it transcends mere lists of drugs; it captures the regulatory DNA of each approval, preserving the review designation, orphan status, and critical dates that define the administrative life of a pharmaceutical product \citep{fda2024}.
 
 My sample construction process began with the ingestion of 1,341 approval records spanning from 1985 through 2024. I immediately faced a data quality challenge regarding the review times. I calculated the review duration for every record and identified a small subset of cases where the calculated time was either negative or exceeded ten years, implying data entry errors or extreme regulatory anomalies that would skew the mean. I removed these six implausible records to preserve the integrity of the distribution.
 
 A more significant methodological hurdle was the absence of explicit therapeutic area labels in the source data. While the FDA tracks indications, they do not provide a binary ``Oncology'' versus ``Non-Oncology'' flag in this public dataset. I developed a classification framework that utilized keyword matching against the ``Abbreviated Indication'' and ``Approved Use'' fields. I defined a dictionary of oncology-specific terms including ``carcinoma,'' ``metastatic,'' ``tumor,'' and ``leukemia'' to categorize these agents.
 
-I observed that data completeness varied significantly by era. Specifically, I found that indication text was missing for approximately 50\% of the total sample, with a distinct structural break occurring around the year 2007 where missingness became pervasive. Rather than discarding these records which would have introduced severe selection bias against modern approvals, I implemented a multi-stage classification strategy. I first classified drugs based on indication text where available. For records with missing indications, I utilized the ``Orphan Drug Designation'' field as a proxy where specific orphan designations contained oncology keywords. I assigned a classification confidence level to each record ranging from high to low. I retained the high and medium confidence records for the primary analysis while segregating the low confidence ``Uncertain'' records. I performed a sensitivity analysis later to confirm that excluding these uncertain records did not fundamentally alter the statistical conclusions.
+I observed that data completeness varied significantly by era. Specifically, I found that indication text was missing for approximately 50\% of the total sample, with a distinct structural break occurring around the year 2007 where missingness became pervasive. Rather than discarding these records which would have introduced severe selection bias against modern approvals, I implemented a multi-stage classification strategy. I first classified drugs based on indication text where available. For records with missing indications, I utilized the ``Orphan Drug Designation'' field as a proxy where specific orphan designations contained oncology keywords. I assigned a classification confidence level to each record ranging from high to low. I retained the high and medium confidence records for the primary analysis while segregating 297 low confidence ``Uncertain'' records. I performed a sensitivity analysis later to confirm that excluding these uncertain records did not fundamentally alter the statistical conclusions.
 
-The final analysis sample consisted of 1,038 unique approvals. I noted an imbalance in the sample composition, where oncology drugs comprised a smaller proportion of the total than non-oncology drugs. I accepted this imbalance because it reflects the actual regulatory structure of the pharmaceutical market rather than sampling error; oncology is a massive therapeutic area but still represents a minority of all drug development compared to the aggregate of cardiology, neurology, infectious disease, and other fields.
+The final analysis sample consisted of 1,038 unique approvals (1,335 minus 297 uncertain classifications). I noted an imbalance in the sample composition, where oncology drugs comprised a smaller proportion of the total than non-oncology drugs. I accepted this imbalance because it reflects the actual regulatory structure of the pharmaceutical market rather than sampling error; oncology is a massive therapeutic area but still represents a minority of all drug development compared to the aggregate of cardiology, neurology, infectious disease, and other fields.
 
 \subsection{Variable Definitions}
 
@@ -115,7 +122,7 @@ I defined the primary outcome as the time elapsed between the FDA's receipt of a
 I constructed a binary factor variable separating the sample into ``Oncology'' and ``Other.'' I chose this binary classification because the research question focuses specifically on the perception of cancer exceptionalism. By collapsing all non-oncology fields into a single reference category, I could directly test whether oncology receives differential treatment compared to the general baseline of pharmaceutical regulation.
 
 \textbf{Review Designation (Secondary Predictor):}
-I utilized the FDA's official review classification as a critical covariate. I categorized applications as either ``Priority Review'' or ``Standard Review.'' This variable measures the FDA's intent; a Priority Review designation indicates that the agency determined the drug offered a significant improvement in safety or effectiveness (U.S. Food and Drug Administration, 2023). I included this because any analysis of review speed that ignores Priority status would be confounded, as oncology drugs are more likely to receive this designation due to the severity of the condition they treat.
+I utilized the FDA's official review classification as a critical covariate. I categorized applications as either ``Priority Review'' or ``Standard Review.'' This variable measures the FDA's intent; a Priority Review designation indicates that the agency determined the drug offered a significant improvement in safety or effectiveness \citep{fda2024}. I included this because any analysis of review speed that ignores Priority status would be confounded, as oncology drugs are more likely to receive this designation due to the severity of the condition they treat.
 
 \textbf{Regulatory Era (Blocking Factor):}
 I recognized that comparing a drug approved in 1990 to one approved in 2020 would be invalid due to massive legislative changes. To handle this temporal confounding, I constructed a blocking variable dividing the timeline into four distinct regulatory eras: Pre-PDUFA (1985–1992), Early-PDUFA (1993–2002), Mid-PDUFA (2003–2012), and Post-FDASIA (2013–2024). I defined these cutoffs based on landmark legislation like the Prescription Drug User Fee Act (PDUFA) and the Food and Drug Administration Safety and Innovation Act (FDASIA) which fundamentally altered the resources available to FDA reviewers. This variable measures the bureaucratic context in which the approval occurred.
@@ -250,15 +257,14 @@ In my analysis, the permutation p-value was 0.5945, which was remarkably close t
 
 I implemented the analysis in R using a modular pipeline architecture consisting of eight sequential phases. Each phase generated intermediate datasets and diagnostic plots that validated the assumptions before proceeding to inferential modeling. The complete analysis workflow included: (1) data loading and temporal filtering, (2) therapeutic area classification via keyword matching, (3) missing data assessment, (4) balance validation and exploratory data analysis, (5) distributional assumption testing with variance stabilization, (6) factorial ANOVA modeling with Type III sums of squares, (7) era-stratified interaction testing, and (8) sensitivity analysis excluding uncertain classifications. This structured approach allowed me to isolate each source of variability systematically and ensured reproducibility of the statistical conclusions.
 
-\newpage
 
 \section{Results}
 
 \subsection{Sample Characteristics and Cell Means}
 
-I began my inspection of the dataset by examining the sample characteristics to understand the landscape of modern drug approval. The final analysis sample consisted of 1038 unique new molecular entity and new biologic approvals spanning from 1985 through 2024. I observed a distinct temporal shift in the composition of these approvals which mirrors the evolution of pharmaceutical science. In the pre PDUFA era ending in 1992, oncology products represented a small fraction of the pipeline. However, this proportion grew substantially over time where oncology drugs accounted for over half of all approvals in the post FDASIA era from 2013 to 2024. This structural imbalance was not merely a curiosity but a critical distributional feature that I needed to address in the inferential modeling to avoid confounding time with therapeutic area.
+I began my inspection of the dataset by examining the sample characteristics to understand the landscape of modern drug approval. The final analysis sample consisted of 1038 unique new molecular entity and new biologic approvals spanning from 1985 through 2024. I observed a distinct temporal shift in the composition of these approvals which mirrors the evolution of pharmaceutical science. In the Pre-PDUFA era ending in 1992, oncology products represented a small fraction of the pipeline. However, this proportion grew substantially over time where oncology drugs accounted for over half of all approvals in the Post-FDASIA era from 2013 to 2024. This structural imbalance was not merely a curiosity but a critical distributional feature that I needed to address in the inferential modeling to avoid confounding time with therapeutic area.
 
-I calculated summary statistics for the review times and found a dramatic reduction in the regulatory cycle over these four decades. The mean review time for the pre PDUFA era was approximately 970 days, a figure that reflects the resource constraints of that period. In contrast, the post FDASIA era showed a mean review time of 384 days. This secular trend of increasing efficiency confirmed why I treated the regulatory era as a blocking factor in subsequent analyses \citep{box2005}. Without controlling for this massive baseline shift, any analysis comparing therapeutic areas would be biased by the fact that most oncology approvals occurred during the modern, faster era.
+I calculated summary statistics for the review times and found a dramatic reduction in the regulatory cycle over these four decades. The mean review time for the Pre-PDUFA era was approximately 970 days, a figure that reflects the resource constraints of that period. In contrast, the Post-FDASIA era showed a mean review time of 384 days. This secular trend of increasing efficiency confirmed why I treated the regulatory era as a blocking factor in subsequent analyses \citep{box2005}. Without controlling for this massive baseline shift, any analysis comparing therapeutic areas would be biased by the fact that most oncology approvals occurred during the modern, faster era.
 
 The distribution of review designations also varied by therapeutic area. I found that oncology drugs were significantly more likely to receive Priority Review status compared to non-oncology drugs. The cell means revealed that oncology Priority Review drugs averaged 300 days (median = 232 days, SD = 282 days, n = 224), while oncology Standard Review drugs averaged 596 days (median = 365 days, SD = 467 days, n = 75). For non-oncology drugs, Priority Review averaged 477 days (median = 275 days, SD = 445 days, n = 367) and Standard Review averaged 792 days (median = 639 days, SD = 530 days, n = 372). This imbalance highlighted the necessity of the factorial design I employed to disentangle the effects of the review type from the therapeutic classification.
 
@@ -304,7 +310,7 @@ The preferred model (Model 3, log-transformed with era blocking) confirmed these
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.9\textwidth]{../visualizations/fig1_interaction_plot.png}
-    \caption{\fontsize{10}{12}\selectfont Interaction plot for the pooled dataset. The non-parallel lines suggested a potential differential benefit of Priority Review by therapeutic area, but the interaction was not statistically significant across all three models (Model 1: F=0.08, p=0.776; Model 2: F=0.32, p=0.572; Model 3: F=2.43, p=0.119). This confirms that Priority Review provides a consistent temporal benefit for both oncology and non-oncology drugs. The apparent visual difference in slopes primarily reflects the main effects of therapeutic area and review type rather than a true interaction effect.}
+    \caption{\fontsize{10}{12}\selectfont Interaction plot for the pooled dataset. Error bars represent 95\% confidence intervals. The non-parallel lines suggested a potential differential benefit of Priority Review by therapeutic area, but the interaction was not statistically significant across all three models (Model 1: F=0.08, p=0.776; Model 2: F=0.32, p=0.572; Model 3: F=2.43, p=0.119). This confirms that Priority Review provides a consistent temporal benefit for both oncology and non-oncology drugs. The apparent visual difference in slopes primarily reflects the main effects of therapeutic area and review type rather than a true interaction effect.}
     \label{fig:interaction_pooled}
 \end{figure}
 
@@ -328,7 +334,7 @@ I inspected the distribution of model residuals to determine if the assumptions 
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.95\textwidth]{../visualizations/fig6_residual_diagnostics.png}
-    \caption{\fontsize{10}{12}\selectfont Four-panel residual diagnostic plots for the two-way ANOVA model on log-transformed review times. \textbf{Top Left:} Residuals vs Fitted values showed no clear funnel pattern which indicated acceptable homoscedasticity. \textbf{Top Right:} Normal Q-Q plot showed residuals aligned closely with the theoretical diagonal which validated the normality assumption. \textbf{Bottom Left:} Scale-Location plot confirmed stable variance across the fitted value range. \textbf{Bottom Right:} Residuals vs Leverage plot with no observations exceeding Cook's distance threshold of 1.0 which indicated no unduly influential outliers affecting the regression parameters.}
+    \caption{\fontsize{10}{12}\selectfont Four-panel residual diagnostic plots for the two-way ANOVA model on log-transformed review times. \textbf{Top Left:} Residuals vs Fitted values showed no clear funnel pattern which indicated acceptable homoscedasticity. \textbf{Top Right:} Normal Q-Q plot showed residuals aligned closely with the theoretical diagonal which validated the normality assumption. \textbf{Bottom Left:} Scale-Location plot confirmed stable variance across the fitted value range. \textbf{Bottom Right:} Histogram of residuals confirming the approximate normal distribution of the errors.}
     \label{fig:residuals}
 \end{figure}
 
@@ -354,7 +360,7 @@ The temporal trends in approval times illustrated the dramatic secular improveme
 \begin{figure}[h!]
     \centering
     \includegraphics[width=0.9\textwidth]{../visualizations/fig2_era_trends_plot.png}
-    \caption{\fontsize{10}{12}\selectfont Temporal trends in approval times across regulatory eras demonstrated systematic changes in review duration over time. The trend lines show the mean review time in days for each regulatory era with error bars representing 95\% confidence intervals. The secular decline from Pre-PDUFA (970 days) to Post-FDASIA (384 days) illustrated the transformative impact of user fee legislation on FDA review efficiency. This baseline shift justified the use of regulatory era as a blocking factor in the ANOVA models.}
+    \caption{\fontsize{10}{12}\selectfont Temporal trends in approval times across regulatory eras demonstrated systematic changes in review duration over time. The trend lines show the mean review time in days for each group across the four regulatory eras. The secular decline from Pre-PDUFA (970 days) to Post-FDASIA (384 days) illustrated the transformative impact of user fee legislation on FDA review efficiency. This baseline shift justified the use of regulatory era as a blocking factor in the ANOVA models.}
     \label{fig:era_trends}
 \end{figure}
 
@@ -430,7 +436,6 @@ The convergence of the era-stratified analysis, the mechanistic explanation via 
 
 \FloatBarrier
 
-\newpage
 
 \section{Discussion}
 
@@ -440,11 +445,11 @@ I undertook this analysis to investigate whether the prevalent industry percepti
 
 The data revealed no statistically significant interaction between therapeutic area and review designation across all three models tested (F=0.08 in the unblocked model, F=0.32 in the blocked raw-scale model, and F=2.43 in the preferred blocked log-scale model, with all p-values $>0.10$). This consistent lack of interaction demonstrates that the regulatory system operates with a high degree of equity regarding review designations. The speed advantage that oncology holds is not a result of administrative favoritism where reviewers work faster for cancer drugs but rather stems from structural differences in how these drugs are developed and the specific regulatory pathways they utilize. My analysis answers the primary research question by confirming that therapeutic area significantly predicts review time but refutes the hypothesis that oncology receives a differential benefit from Priority Review designations.
 
-\subsection{Simpson's Paradox and the Importance of Blocking}
+\subsection{Temporal Confounding and the Importance of Blocking}
 
-I uncovered a textbook example of Simpson's Paradox during the era-stratified analysis which fundamentally changed the interpretation of the therapeutic area main effect. When I compared the unblocked model to the blocked model, the F-statistic for therapeutic area decreased from F=21.22 ($p < 0.001$) to F=18.70 ($p < 0.001$), indicating that part of the apparent oncology speed advantage was confounded with temporal trends rather than reflecting a pure therapeutic area effect.
+I uncovered temporal confounding during the era-stratified analysis which fundamentally changed the interpretation of the therapeutic area main effect. When I compared the naive baseline model (raw scale, unblocked) to the final adjusted model (log scale, era-blocked), the F-statistic for therapeutic area decreased from F=21.22 ($p < 0.001$) to F=18.70 ($p < 0.001$), indicating that part of the apparent oncology speed advantage was confounded with temporal trends rather than reflecting a pure therapeutic area effect.
 
-As Box, Hunter, and Hunter (2005) warn, analyzing ``happenstance data'' requires extreme caution because lurking variables can easily distort relationships. In this case the lurking variable was time itself. The oncology approvals in the dataset were heavily concentrated in the post-FDASIA era which is a period characterized by generally faster review times across the entire agency due to increased resources and process improvements. Conversely the non-oncology reference group had a higher proportion of approvals from the pre-PDUFA and early-PDUFA eras when review times were historically longer. The unblocked pooled model conflated the ``oncology effect'' with the ``modern era effect.'' By blocking on regulatory era I controlled for this temporal confounding and isolated the true therapeutic area effect from the era effect. This teaches us that analyzing long-term regulatory data requires rigorous stratification to account for the evolving legislative landscape. Critically, the interaction between therapeutic area and review designation remained non-significant in both the unblocked (F=0.08, p=0.776) and blocked (F=2.43, p=0.119) models, confirming that the Priority Review mechanism operates uniformly across therapeutic areas.
+As Box, Hunter, and Hunter (2005) warn, analyzing ``happenstance data'' requires extreme caution because lurking variables can easily distort relationships. In this case the lurking variable was time itself. The oncology approvals in the dataset were heavily concentrated in the Post-FDASIA era which is a period characterized by generally faster review times across the entire agency due to increased resources and process improvements. Conversely the non-oncology reference group had a higher proportion of approvals from the Pre-PDUFA and Early-PDUFA eras when review times were historically longer. The unblocked pooled model conflated the ``oncology effect'' with the ``modern era effect.'' By blocking on regulatory era I controlled for this temporal confounding and isolated the true therapeutic area effect from the era effect. This teaches us that analyzing long-term regulatory data requires rigorous stratification to account for the evolving legislative landscape. Critically, the interaction between therapeutic area and review designation remained non-significant in both the unblocked (F=0.08, p=0.776) and blocked (F=2.43, p=0.119) models, confirming that the Priority Review mechanism operates uniformly across therapeutic areas.
 
 \subsection{Accelerated Approval as a Mechanistic Driver}
 
@@ -464,7 +469,6 @@ I must acknowledge several limitations inherent to this analysis that frame the 
 
 I also faced challenges with data completeness where a significant portion of the indication text was missing for records prior to 2007. I relied on proxy variables like orphan designation to classify some of these older records which introduces a potential for misclassification bias. Furthermore the experimental design was severely unbalanced with cell counts varying drastically between the oncology priority group and the non-oncology standard group. I addressed this by using Type III Sums of Squares to calculate marginal effects but this does not fully compensate for the lack of balance inherent in the regulatory history. Finally I could not control for the quality of the submission packages or the complexity of the manufacturing processes which are unobserved variables that undoubtedly influence review time.
 
-\newpage
 
 \section{Conclusion}
 
@@ -482,8 +486,6 @@ I see several avenues for future research that could build upon this methodologi
 
 \bibliographystyle{apalike}
 \bibliography{fda_references}
-
-\newpage\newpage
 
 \newpage
 
@@ -505,7 +507,6 @@ I see several avenues for future research that could build upon this methodologi
 
 
 
-\newpage
 
 \section*{Appendix B: Sensitivity Analysis Results}
 
@@ -552,7 +553,6 @@ Interaction F-Statistic & 0.32 & 1.00 & 0.5945 \\
 
 The permutation p-value of 0.5945 confirms that the interaction between therapeutic area and review designation is not statistically significant when controlling for era which aligns with the parametric p-value of 0.57 from the era-stratified model.
 
-\newpage
 
 \section*{Appendix C: Complete ANOVA Tables}
 
@@ -619,10 +619,9 @@ Orphan Drug & 0.2 & 1 & 0.2 & 0.52 & 0.4720 \\
 Residuals & 337.6 & 1028 & 0.3 & & \\
 \bottomrule
 \end{tabular}
-\caption{ANCOVA table with expedited program covariates.}
+\caption{ANCOVA table with expedited program covariates. Note: Review Designation, Regulatory Era, and Interaction terms were included in the model but are not listed in this summary table. The full model included 10 degrees of freedom: Intercept (1) + Therapeutic Area (1) + Review Designation (1) + Regulatory Era (3) + Interaction (1) + Accelerated Approval (1) + Fast Track (1) + Orphan Drug (1).}
 \end{table}
 
-\newpage
 
 \section*{Appendix D: Data Classification Details}
 
