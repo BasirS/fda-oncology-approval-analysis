@@ -368,12 +368,12 @@ Having established that the interaction effect was spurious, I turned to quantif
 
 \subsection{Effect Size Analysis}
 
-I calculated partial eta-squared using the formula:
+I calculated eta-squared using the formula:
 \begin{equation}
-\eta_p^2 = \frac{SS_{effect}}{SS_{effect} + SS_{error}}
+\eta^2 = \frac{SS_{effect}}{SS_{total}}
 \end{equation}
 
-where $SS_{effect}$ represents the sum of squares for the model term of interest and $SS_{error}$ represents the residual sum of squares after fitting the full model.
+where $SS_{effect}$ represents the sum of squares for the model term of interest and $SS_{total}$ represents the total sum of squares in the model.
 
 The regulatory era blocking factor accounted for the largest share of variance ($\eta^2 = 0.191$), confirming that temporal trends dominate the variability in FDA approval times. The review designation main effect explained 5.6\% of total variance which demonstrates a substantial impact of the Priority Review mechanism. The therapeutic area main effect explained 1.3\% of variance which indicates a modest but statistically significant difference between oncology and non-oncology drugs. The interaction term explained less than 0.2\% of variance which reinforces the conclusion that any differential benefit of Priority Review by therapeutic area is negligible in practical terms.
 
@@ -414,7 +414,7 @@ I examined the utilization rates and found that oncology drugs were 4.9 times mo
 
 \subsection{Sensitivity Analysis}
 
-To ensure the validity of these findings, I performed several robustness checks to address the uncertainty in the classification of some drugs. I re-ran the core models using a high-confidence subset of the data (n = 659), excluding records where the therapeutic area classification was based solely on orphan designation or proxy variables. The results showed that the Review Designation and Regulatory Era effects remained highly significant while the interaction term remained non-significant across all sensitivity specifications. This consistency across different subsets of the data strengthens the conclusion that the observed patterns are robust and not artifacts of classification errors or distributional anomalies.
+To ensure the validity of these findings, I performed several robustness checks to address the uncertainty in the classification of some drugs. I re-ran the core models using a high-confidence subset of the data (n = 659), excluding records where the therapeutic area classification was based solely on orphan designation or proxy variables. The results showed that the Review Designation and Regulatory Era effects remained highly significant while the interaction term remained non-significant across all sensitivity specifications. (Note: The Pre-PDUFA era was excluded from this sensitivity analysis due to insufficient high-confidence data in that period, reducing the regulatory era degrees of freedom from 3 to 2.) This consistency across different subsets of the data strengthens the conclusion that the observed patterns are robust and not artifacts of classification errors or distributional anomalies.
 
 The convergence of the era-stratified analysis, the mechanistic explanation via ANCOVA, and the computational validation via permutation testing provides a coherent evidential basis for concluding that the FDA approval process remains consistent across therapeutic areas when proper statistical controls are applied.
 
