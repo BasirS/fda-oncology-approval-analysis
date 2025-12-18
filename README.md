@@ -2,11 +2,6 @@
 
 Statistical Analysis of Priority Review Effects on FDA Drug Approval Timelines 
 
-## Statistics Honors Project
-~ *Experimental Design for Machine Learning (STA 4157) Project*
-
-By: Basir Abdul Samad
-
 ## Overview
 
 This repository contains a comprehensive statistical analysis investigating whether oncology drugs receive differential reductions in FDA approval timelines from Priority Review designation compared to non-oncology therapeutic areas. The analysis reveals Simpson's Paradox in the therapeutic area main effect when controlling for regulatory era.
