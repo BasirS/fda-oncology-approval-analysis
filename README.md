@@ -23,7 +23,7 @@ fda-oncology-approval-analysis/
 │   └── fda_references.bib
 ├── data/                          # FDA dataset
 │   └── final_for_posting_compilation_of_cder_nme_and_new_biologic_approvals_1985-2024.csv
-├── visualizations/                # Publication-quality figures (22 figures)
+├── visualizations/                # Visualizations (19 figures)
 │   ├── fig1_interaction_plot.png
 │   ├── fig2_era_trends_plot.png
 │   ├── fig3_permutation_histograms.png
